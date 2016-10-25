@@ -1,0 +1,157 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!-- Elfy -->
+
+<!-- Iron -->
+
+<!-- Paper -->
+<link rel="import" href="../paper-input/paper-input.html">
+
+<!-- Third -->
+<link rel="import" href="../vaadin-combo-box/vaadin-combo-box.html">
+
+<!-- My -->
+<!--
+`ee-input-combo`
+paper input and combo box
+
+@demo demo/index.html
+-->
+
+<dom-module id="ee-input-combo">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .container {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -ms-flex-direction: row;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+
+        border: 1px solid var(--default-primary-color, #3ea1e6);
+        border-radius: 5px;
+        @apply(--ee-input-combo-container);
+      }
+
+      .input {
+        width: 50%;
+        border: 0;
+        font-size: 1.2em;
+        padding: 0 6px;
+        @apply(--ee-input-combo-input);
+      }
+
+      .combo {
+        background-color: var(--default-primary-color, #3ea1e6);
+        color: var(--text-primary-color, #fffff);
+        padding: 6px;
+        border-radius: 3px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        @apply(--ee-input-combo-combo);
+      }
+
+      input:focus {
+        outline-width: 0;
+      }
+    </style>
+    <div class="container">
+      <input class="input" is="iron-input"
+        value="[[inputValue]]"
+        placeholder="[[placeholder]]">
+
+      <vaadin-combo-box class="combo"
+        items="[[items]]"
+        label="[[label]]"
+        value="{{comboValue}}"
+        allow-custom-value="[[allowCustomValue]]"
+        item-label-path="[[itemLabelPath]]"
+        item-value-path="[[itemValuePath]]"
+        selected-item="{{selectedItem}}">
+      </vaadin-combo-box>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'ee-input-combo',
+
+      properties: {
+        /**
+         * The items for the combo box.
+         */
+        items: {
+          type: Array,
+          value() { return [] },
+        },
+
+        /**
+         * Set to true to allows input values which are not in the items list.
+         */
+        allowCustomValue: {
+          type: Boolean,
+          value: false,
+        },
+
+        /**
+         * The label for combo.
+         */
+        label: {
+          type: String,
+          reflectToAttribute: true
+        },
+
+        /**
+         * The placeholder for input.
+         */
+        placeholder: {
+          type: String,
+        },
+
+        /**
+         * Path for label of the item. If `items` is an array of objects, the
+         * `itemLabelPath` is used to fetch the displayed string label for each
+         * item.
+         *
+         * The item label is also used for matching items when processing user
+         * input, i.e., for filtering and selecting items.
+         */
+        itemLabelPath: {
+          type: String,
+          value: 'label'
+        },
+
+        /**
+         * Path for the value of the item. If `items` is an array of objects, the
+         * `itemValuePath:` is used to fetch the string value for the selected
+         * item.
+         *
+         * The item value is used in the `value` property of the combo box,
+         * to provide the form value.
+         */
+        itemValuePath: {
+          type: String,
+          value: 'value'
+        },
+
+        /**
+         * The selected item from the `items` array.
+         */
+        selectedItem: {
+          type: Object,
+          notify: true
+        },
+      },
+
+    });
+  </script>
+</dom-module>
