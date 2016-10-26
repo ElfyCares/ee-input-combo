@@ -36,7 +36,7 @@ paper input and combo box
         -webkit-align-items: center;
         align-items: center;
 
-        border: 1px solid var(--default-primary-color, #3ea1e6);
+        border: 1px solid var(--paper-toolbar-background, #81d4fa);
         border-radius: 5px;
         @apply(--ee-input-combo-container);
       }
@@ -46,6 +46,7 @@ paper input and combo box
         border: 0;
         font-size: 1.2em;
         padding: 0 6px;
+        text-align: center;
         @apply(--ee-input-combo-input);
       }
 
@@ -115,6 +116,24 @@ paper input and combo box
          */
         placeholder: {
           type: String,
+        },
+
+        /**
+         * The value from input.
+         */
+        inputValue: {
+          type: String,
+          value: ''
+          notify: true
+        },
+
+        /**
+         * The value from combo selection.
+         */
+        comboValue: {
+          type: String,
+          value: ''
+          notify: true
         },
 
         /**
