@@ -69,7 +69,7 @@ paper input and combo box
         bind-value="[[inputValue]]"
         placeholder="[[placeholder]]">
 
-      <vaadin-combo-box class="combo"
+      <vaadin-combo-box id="combo" class="combo"
         items="[[items]]"
         label="[[label]]"
         value="{{comboValue}}"
@@ -169,6 +169,12 @@ paper input and combo box
           type: Object,
           notify: true
         },
+      },
+
+      open() {
+        if (this.$.combo) {
+          this.$.combo.open()
+        }
       },
 
     });
